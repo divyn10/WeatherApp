@@ -1,13 +1,16 @@
 package com.example.weatherapp.controllers;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.weatherapp.services.WeatherService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/weather")
 public class WeatherController {
-    @GetMapping("/test")
-    public String getWeather(){
-        return "this is a just a test api response";
+    WeatherService weatherService;
+    public WeatherController(WeatherService weatherService){
+        this.weatherService = weatherService;
     }
-
+    @GetMapping("")
+    public String getWeather(){
+        return weatherService.getWeather();
+    }
 }
